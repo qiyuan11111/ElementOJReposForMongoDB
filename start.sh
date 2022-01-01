@@ -17,3 +17,4 @@ db.createUser(
 db.createCollection("contest_enter");
 db.createCollection("contest_problem");
 EOF
+/bin/bash
