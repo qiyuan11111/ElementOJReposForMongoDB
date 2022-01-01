@@ -1,9 +1,4 @@
-FROM mongo
+FROM ubuntu:18.04
 MAINTAINER qiyuan
-COPY sources.list /etc/apt/sources.list
-COPY start.sh /mongodb/start.sh
-RUN apt-get update --fix-missing && apt-get -y install openssl --fix-missing \
-	&& cd /mongodb && openssl rand -base64 756 > auth.key && chmod 777 /mongodb/start.sh\
-	&& chown -R mongodb:mongodb /mongodb/auth.key && chmod 600 /mongodb/auth.key
-EXPOSE 27017
+RUN apt-get update --fix-missing && apt-get -y install sudo gcc g++ openssl libcurl4-openssl-dev --fix-missing
 	
