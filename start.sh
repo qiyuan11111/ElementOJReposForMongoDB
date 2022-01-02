@@ -6,13 +6,10 @@ db.createUser({
 	user:"root", 
 	pwd:"ctguacm1234@",
 	roles:[{
-		role:"userAdminAnyDatabase",
+		role:"root",
 		db:"admin"
-	},{
-		role:"readWriteAnyDatabase",
-		db:"admin"
-	}]}
-);
+	}]
+});
 EOF
 /usr/local/mongodb/bin/mongod --shutdown --dbpath /data/db
 /usr/local/mongodb/bin/mongod --fork --logpath /usr/local/mongodb/mongodb.log --dbpath /data/db --auth --bind_ip 0.0.0.0

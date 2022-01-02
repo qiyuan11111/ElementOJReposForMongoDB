@@ -7,5 +7,5 @@ RUN apt-get update --fix-missing && apt-get -y install gcc g++ sudo openssl wget
 	&& tar -zxvf mongodb-linux-x86_64-ubuntu1604-4.4.12-rc0.tgz && chmod 777 /mongodb/start.sh \
 	&& sudo mv mongodb-linux-x86_64-ubuntu1604-4.4.12-rc0/ /usr/local/mongodb && chmod -R 777 /usr/local/mongodb
 EXPOSE 27017
-CMD ["/bin/sh", "/mongodb/start.sh"] 
+ENTRYPOINT ["/bin/sh", "/mongodb/start.sh"] 
 	
