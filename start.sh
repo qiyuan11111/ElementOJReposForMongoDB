@@ -23,7 +23,7 @@ EOF
 /usr/local/mongodb/bin/mongod --shutdown --dbpath /data/db
 fi
 
-/usr/local/mongodb/bin/mongod --fork --logpath /usr/local/mongodb/mongodb.log --dbpath /data/db --auth --bind_ip 0.0.0.0
+/usr/local/mongodb/bin/mongod --fork --logpath /usr/local/mongodb/mongodb.log --replSet rs0 --dbpath /data/db --auth --bind_ip 0.0.0.0
 
 if [ $FLAG -eq 1 ]; then
 /usr/local/mongodb/bin/mongo << EOF
