@@ -19,6 +19,17 @@ db.createUser({
 		db:"admin"
 	}]
 });
+use eloj; 
+db.createUser({  
+    user: "ctgu",  
+    pwd: "ctguacm1234@",  
+    roles: [{ 
+			role: "readWrite", 
+			db: "eloj" 
+	}]
+}); 
+db.createCollection("contest_enter");
+db.createCollection("contest_problem");
 EOF
 /usr/local/mongodb/bin/mongod --shutdown --dbpath /data/db
 openssl rand -base64 756 > /usr/local/mongodb/repl_set.key
@@ -32,17 +43,6 @@ if [ $FLAG -eq 1 ]; then
 use admin;
 db.auth("root", "ctguacm1234@");
 rs.initiate();
-use eloj;
-db.createUser({  
-    user: "ctgu",  
-    pwd: "ctguacm1234@",  
-    roles: [{ 
-			role: "readWrite", 
-			db: "eloj" 
-	}]
-}); 
-db.createCollection("contest_enter");
-db.createCollection("contest_problem");
 EOF
 fi
 /bin/bash
