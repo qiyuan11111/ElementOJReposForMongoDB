@@ -22,7 +22,7 @@ db.createUser({
 EOF
 /usr/local/mongodb/bin/mongod --shutdown --dbpath /data/db
 openssl rand -base64 756 > /usr/local/mongodb/repl_set.key
-chmod 777 /usr/local/mongodb/repl_set.key
+chmod 600 /usr/local/mongodb/repl_set.key
 fi
 
 /usr/local/mongodb/bin/mongod --fork --logpath /usr/local/mongodb/mongodb.log --replSet rs0 --keyFile /usr/local/mongodb/repl_set.key --dbpath /data/db --auth --bind_ip 0.0.0.0
