@@ -1,6 +1,7 @@
 #!/bin/sh
 /usr/local/mongodb/bin/mongod --fork --logpath /usr/local/mongodb/mongodb.log --dbpath /data/db
 /usr/local/mongodb/bin/mongo << EOF
+use admin;
 db.createUser({
 	user:"root", 
 	pwd:"ctguacm1234@",
