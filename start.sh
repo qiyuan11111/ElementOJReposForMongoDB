@@ -24,12 +24,14 @@ db.createUser({
     user: "ctgu",  
     pwd: "ctguacm1234@",  
     roles: [{ 
-			role: "readWrite", 
-			db: "eloj" 
+		role: "readWrite", 
+		db: "eloj" 
 	}]
 }); 
-db.createCollection("contest_enter");
+db.createCollection("contest_sign");
 db.createCollection("contest_problem");
+db.createCollection("contest_solution");
+db.createCollection("contest_solution_index");
 EOF
 /usr/local/mongodb/bin/mongod --shutdown --dbpath /data/db
 openssl rand -base64 756 > /usr/local/mongodb/repl_set.key
@@ -43,6 +45,9 @@ if [ $FLAG -eq 1 ]; then
 use admin;
 db.auth("root", "ctguacm1234@");
 rs.initiate();
+cfg = rs.conf()
+cfg.members[0].host = "Element-mongodb:27017"
+rs.reconfig(cfg)
 EOF
 fi
 /bin/bash
