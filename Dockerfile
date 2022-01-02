@@ -6,6 +6,6 @@ RUN apt-get update --fix-missing && apt-get -y install gcc g++ sudo openssl wget
 	&& cd /usr/local/src && wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-4.4.12-rc0.tgz \
 	&& tar -zxvf mongodb-linux-x86_64-ubuntu1604-4.4.12-rc0.tgz && chmod 777 /mongodb/start.sh \
 	&& sudo mv mongodb-linux-x86_64-ubuntu1604-4.4.12-rc0/ /usr/local/mongodb && chmod -R 777 /usr/local/mongodb \
-	&& /usr/local/mongodb/bin/mongod --logpath /usr/local/mongodb/mongodb.log --dbpath /data/db --auth --bind_ip 0.0.0.0
 EXPOSE 27017
+ENTRYPOINT ["/bin/sh", "/mongodb/start.sh"] 
 	

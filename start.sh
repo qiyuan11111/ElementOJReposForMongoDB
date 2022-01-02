@@ -1,5 +1,13 @@
 #!/bin/sh
-/usr/local/mongodb/bin/mongod --shutdown --dbpath /data/db
+DIRECTORY=/data/db
+FLAG=0
+if [ "`ls -A $DIRECTORY`" = "" ]; then
+	FLAG=1
+else
+	FLAG=0
+fi
+
+if [ $FLAG -eq 1 ]; then
 /usr/local/mongodb/bin/mongod --fork --logpath /usr/local/mongodb/mongodb.log --dbpath /data/db
 /usr/local/mongodb/bin/mongo << EOF
 use admin;
@@ -13,7 +21,11 @@ db.createUser({
 });
 EOF
 /usr/local/mongodb/bin/mongod --shutdown --dbpath /data/db
+fi
+
 /usr/local/mongodb/bin/mongod --fork --logpath /usr/local/mongodb/mongodb.log --dbpath /data/db --auth --bind_ip 0.0.0.0
+
+if [ $FLAG -eq 1 ]; then
 /usr/local/mongodb/bin/mongo << EOF
 use admin;
 db.auth("root", "ctguacm1234@");
@@ -30,4 +42,5 @@ db.createUser({
 db.createCollection("contest_enter");
 db.createCollection("contest_problem");
 EOF
+fi
 /bin/bash
