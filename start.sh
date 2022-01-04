@@ -39,8 +39,6 @@ chmod 600 /usr/local/mongodb/repl_set.key
 fi
 
 /usr/local/mongodb/bin/mongod --fork --logpath /usr/local/mongodb/mongodb.log --replSet rs0 --keyFile /usr/local/mongodb/repl_set.key --dbpath /data/db --auth --bind_ip 0.0.0.0
-
-if [ $FLAG -eq 1 ]; then
 /usr/local/mongodb/bin/mongo << EOF
 use admin;
 db.auth("root", "ctguacm1234@");
@@ -49,5 +47,5 @@ cfg = rs.conf()
 cfg.members[0].host = "Element-mongodb:27017"
 rs.reconfig(cfg)
 EOF
-fi
+
 /bin/bash
